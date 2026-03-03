@@ -7,16 +7,16 @@ function Player(name, mark) {
 }
 
 //Player Objects
-const human = new Player("Clark", "O");
+const player1 = new Player("Clark", "O");
 const ai = new Player("AI", "X");
 
 
 //Game Board Object
 function gameBoard() {
     const board = [
-        [["X"],[],["O"]],
-        [["O"],["O"],["O"]],
-        [["O"],[],["X"]],
+        [["O"],["O"],["X"]],
+        [["O"],["O"],["X"]],
+        [[],[],["O"]],
     ];
 
     function aiInput() {
@@ -34,20 +34,19 @@ function gameBoard() {
 //Game Flow
 function gameFlow(player1, player2, board) {
 
-    console.log("Game starts!");
+    console.log("------GAME STARTS!------");
     console.log(player1.name + " vs. " + player2.name);
 
-    //Decide winner function
     function gameLogic() {
         //horizontal top
-        if (board[0][0] && board[0][1] && board[0][2] === "O") {
-            if (player1.mark === "O") {
+        if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == "O") {
+            if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[0][0] && board[0][1] && board[0][2] == "X") {
+        else if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -55,14 +54,14 @@ function gameFlow(player1, player2, board) {
             }
         }
         //horizontal middle
-        else if (board[1][0] && board[1][1] && board[1][2] == "O") {
+        else if (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[1][0] && board[1][1] && board[1][2] == "X") {
+        else if (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -70,14 +69,14 @@ function gameFlow(player1, player2, board) {
             }
         }
         //horizontal bottom
-        else if (board[2][0] && board[2][1] && board[2][2] == "O") {
+        else if (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[2][0] && board[2][1] && board[2][2] == "X") {
+        else if (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -87,14 +86,14 @@ function gameFlow(player1, player2, board) {
 
 
         //vertical left
-        else if (board[0][0] && board[1][0] && board[2][0] == "O") {
+        else if (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[0][0] && board[1][0] && board[2][0] == "X") {
+        else if (board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -102,14 +101,14 @@ function gameFlow(player1, player2, board) {
             }
         }
         //vertical middle
-        else if (board[0][1] && board[1][1] && board[2][1] == "O") {
+        else if (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[0][1] && board[1][1] && board[2][1] == "X") {
+        else if (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -117,14 +116,14 @@ function gameFlow(player1, player2, board) {
             }
         }
         //vertical right
-        else if (board[0][2] && board[1][2] && board[2][2] == "O") {
+        else if (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[0][2] && board[1][2] && board[2][2] == "X") {
+        else if (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -133,14 +132,14 @@ function gameFlow(player1, player2, board) {
         }
 
         //criss (\)
-        else if (board[0][0] && board[1][1] && board[2][2] == "O") {
+        else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         } 
-        else if (board[0][0] && board[1][1] && board[2][2] == "X") {
+        else if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -148,14 +147,14 @@ function gameFlow(player1, player2, board) {
             }
         }
         // cross (/)
-        else if (board[0][2] && board[1][1] && board[2][0] == "O") {
+        else if (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner!");
             } else {
                 console.log(player2.name + " is the winner!")
             }
         } 
-        else if (board[0][2] && board[1][1] && board[2][0] == "X") {
+        else if (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -171,4 +170,4 @@ function gameFlow(player1, player2, board) {
     gameLogic();
 }
 
-gameFlow(human, ai, gameBoard());
+gameFlow(player1, ai, gameBoard());
