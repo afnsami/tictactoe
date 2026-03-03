@@ -4,7 +4,7 @@
 function Player(name, mark) {
     this.name = name;
     this.mark = mark;
-}
+};
 
 //Player Objects
 const player1 = new Player("Clark", "O");
@@ -15,8 +15,8 @@ const ai = new Player("AI", "X");
 function gameBoard() {
     const board = [
         [["O"],["O"],["X"]],
-        [["O"],["O"],["X"]],
-        [[],[],["O"]],
+        [["O"],["X"],["X"]],
+        [["X"],["X"],["O"]],
     ];
 
     function aiInput() {
@@ -37,7 +37,7 @@ function gameFlow(player1, player2, board) {
     console.log("------GAME STARTS!------");
     console.log(player1.name + " vs. " + player2.name);
 
-    function gameLogic() {
+    function getWinner() {
         //horizontal top
         if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == "O") {
             if (player1.mark == "O") {
@@ -167,7 +167,7 @@ function gameFlow(player1, player2, board) {
         }
     };
 
-    gameLogic();
+    getWinner();
 }
 
 gameFlow(player1, ai, gameBoard());
