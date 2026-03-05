@@ -8,35 +8,58 @@ function Player(name, mark) {
 
 //Player Objects
 const player1 = new Player("Clark", "O");
-const ai = new Player("AI", "X");
+const ai = new Player("A.I.", "X");
 
 
 //Game Board Object
-function gameBoard() {
-    const board = [
-        [["O"],["O"],["X"]],
-        [["O"],["X"],["X"]],
-        [["X"],["X"],["O"]],
+let board = [
+        [ , , ,],
+        [["O"],["O"],["O"]],
+        [["O"],["O"],["O"]],
     ];
-
-    function aiInput() {
-        let aiMark = Math.floor(Math.random() * 3);
-
-        board[aiMark][aiMark] = "X";
-        console.log(board);
-    };
-
-    return board;
-};
-
 
 
 //Game Flow
 function gameFlow(player1, player2, board) {
 
-    console.log("------GAME STARTS!------");
     console.log(player1.name + " vs. " + player2.name);
+    console.log("");
 
+    //Initial Board
+    // console.log("------(Initial board)------");
+    // console.log(board);
+    console.log("");
+
+
+
+
+    //Game moves
+    console.log("------(Game starts)------");
+    
+    function aiInput() { 
+        let cordinate1 = Math.floor(Math.random() * 3);
+        let cordinate2 = Math.floor(Math.random() * 3);
+
+        if (board[cordinate1][cordinate2] == "") {
+            console.log("(Empty!!!)");
+            board[cordinate1][cordinate2] = ["X"];
+        } else {
+            console.log("(Not empty!!!)");
+        }
+    };
+
+
+    function resetBoard() {
+        if (getWinner() == true) {
+            console.log(board);
+            board = [];
+            // console.log(board);
+        };
+    };
+
+
+
+    //Winner
     function getWinner() {
         //horizontal top
         if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == "O") {
@@ -165,9 +188,19 @@ function gameFlow(player1, player2, board) {
         else {
             console.log("It's a draw!");
         }
+
+        return true;
     };
 
-    getWinner();
-}
 
-gameFlow(player1, ai, gameBoard());
+
+
+    aiInput();
+    console.log(board);
+
+
+    // console.log("------(Board after reset)------");
+    // console.log(board);
+};
+
+gameFlow(player1, ai, board);
