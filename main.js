@@ -212,9 +212,9 @@ function gameFlow(player1, player2, board) {
     //RESET BOARD
     function resetBoard() {
         board = [
-            [ '', '', ''],
-            [ '', '', ''],
-            [ '', '', ''],
+            '', '', '',
+            '', '', '',
+            '', '', '',
         ];
         console.log(board);
     };
@@ -230,7 +230,7 @@ function gameFlow(player1, player2, board) {
 
     console.log("");
     console.log("------(Board after reset)------");
-    //resetBoard();
+    resetBoard();
 };
 
 gameFlow(player1, ai, board);
