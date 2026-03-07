@@ -15,28 +15,18 @@ const ai = new Player("A.I.", "X");
 
 //Game Board Object
 let board = [
-        'O', 'O', '',
-        'O', '', 'O',
-        '', 'O', '',
+        'O', 'O', 'O',
+        'O', '', '',
+        '', '', '',
     ];
 
 
-//EMPTY ARRAY INDEXES
-let emptyBoardIndexes = []; 
+function printBoard() {
+    console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
+    console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
+    console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
+}
 
-function getEmptyIndexes() {
-
-    const emptyIndex = board.reduce((accumulator, current, index) => {
-        
-        if (current === '') {
-            accumulator.push(index);
-        }
-
-        return accumulator;
-    }, []);
-
-    emptyBoardIndexes.push(emptyIndex);
-};
 
 //-----------------------------------
 
@@ -44,47 +34,31 @@ function getEmptyIndexes() {
 //Game Flow
 function gameFlow(player1, player2, board) {
 
-    console.log((player1.name + " vs. " + player2.name));
-    console.log("");
-
-    // PRINT Initial Board
-    console.log("------(Initial board)------");
-    console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
-    console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
-    console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
-    console.log("");
-
-
-
     //Game Starts
     console.log("------(Game starts)------");
     
     //GET AI INPUT
     function aiInput() { 
-        let coordinate = Math.floor(Math.random() * 9);
 
-        if (board[coordinate] == '') {
-            //SETS MARK IF SPACE IS EMPTY
-            console.log("empty");
-            board[coordinate] = 'X';
+        let emptyIndexesArray = []; 
 
+        const emptyIndex = board.reduce((accumulator, current, index) => {
+            
+            if (current === '') {
+                accumulator.push(index);
+            }
 
-            // const index = board.indexOf(coordinate, 0);
-            // console.log("index:" + index);
+            return accumulator;
+        }, []);
 
-            // if (index !== -1) {
-            //     emptyBoardIndexes.splice(index, 1);
-            // }
+        emptyIndexesArray.push(emptyIndex);
 
-            // console.log("Updated Array: ", emptyBoardIndexes);
-        } else {
-            //CHECKS FOR EMPTY INDEXES
-            getEmptyIndexes();
+    
 
-            //INSERT MARK AND DELETE THE MARKED INDEX FROM emptyBoardIndexes ARRAY
-            board[emptyBoardIndexes[0][0]] = 'X';
-            emptyBoardIndexes[0].shift();
-        };
+        let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
+        console.log(emptyIndexesArray);
+        board[emptyIndexesArray[0][coordinate]] = 'X';
+
     };
 
 
@@ -238,19 +212,13 @@ function gameFlow(player1, player2, board) {
 
 
     aiInput();
-    //aiInput();
-    // aiInput();
-    // aiInput();
-    console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
-    console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
-    console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
-
-    //getWinner();
-
+    aiInput();
+    aiInput();
 
     console.log("");
-    console.log("------(Board after reset)------");
-    resetBoard();
+    printBoard();
+
+    //getWinner();
 };
 
 gameFlow(player1, ai, board);
