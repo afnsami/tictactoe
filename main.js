@@ -15,9 +15,9 @@ const ai = new Player("A.I.", "X");
 
 //Game Board Object
 let board = [
-        'O', 'O', 'O',
+        '', 'O', 'O',
         'O', '', 'O',
-        'O', 'O', '',
+        '', 'O', '',
     ];
 
 
@@ -70,6 +70,7 @@ function gameFlow(player1, player2, board) {
 
             //INSERT MARK
             board[emptyBoardIndexes[0][0]] = 'X';
+            emptyBoardIndexes[0].shift();
         };
     };
 
@@ -220,6 +221,9 @@ function gameFlow(player1, player2, board) {
     };
 
 
+    aiInput();
+    aiInput();
+    aiInput();
     aiInput();
     console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
     console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
