@@ -15,7 +15,7 @@ const ai = new Player("A.I.", "X");
 
 //Game Board Object
 let board = [
-        '', 'O', 'O',
+        'O', 'O', '',
         'O', '', 'O',
         '', 'O', '',
     ];
@@ -49,7 +49,9 @@ function gameFlow(player1, player2, board) {
 
     // PRINT Initial Board
     console.log("------(Initial board)------");
-    console.log(board);
+    console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
+    console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
+    console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     console.log("");
 
 
@@ -63,12 +65,23 @@ function gameFlow(player1, player2, board) {
 
         if (board[coordinate] == '') {
             //SETS MARK IF SPACE IS EMPTY
+            console.log("empty");
             board[coordinate] = 'X';
+
+
+            // const index = board.indexOf(coordinate, 0);
+            // console.log("index:" + index);
+
+            // if (index !== -1) {
+            //     emptyBoardIndexes.splice(index, 1);
+            // }
+
+            // console.log("Updated Array: ", emptyBoardIndexes);
         } else {
             //CHECKS FOR EMPTY INDEXES
             getEmptyIndexes();
 
-            //INSERT MARK
+            //INSERT MARK AND DELETE THE MARKED INDEX FROM emptyBoardIndexes ARRAY
             board[emptyBoardIndexes[0][0]] = 'X';
             emptyBoardIndexes[0].shift();
         };
@@ -217,14 +230,17 @@ function gameFlow(player1, player2, board) {
             '', '', '',
             '', '', '',
         ];
-        console.log(board);
+
+        console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
+        console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
+        console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
 
 
     aiInput();
-    aiInput();
-    aiInput();
-    aiInput();
+    //aiInput();
+    // aiInput();
+    // aiInput();
     console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
     console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
     console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
