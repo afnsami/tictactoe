@@ -14,28 +14,38 @@ const ai = new Player("A.I.", "X");
 
 
 //Game Board Object
-let board = [
-        'O', 'O', 'O',
-        'O', '', '',
-        '', '', '',
-    ];
+let gameBoard = {
+
+    board: [
+            'O', 'O', '',
+            '', '', 'O',
+            '', '', 'O',
+        ],
+
+    getBoard() {
+        return this.board;
+    }
+};
+
 
 
 function printBoard() {
     console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
     console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
     console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
-}
+};
 
 
 //-----------------------------------
 
 
-//Game Flow
+//GAME FLOW
 function gameFlow(player1, player2, board) {
+
 
     //Game Starts
     console.log("------(Game starts)------");
+    console.log(board);
     
     //GET AI INPUT
     function aiInput() { 
@@ -53,20 +63,18 @@ function gameFlow(player1, player2, board) {
 
         emptyIndexesArray.push(emptyIndex);
 
-    
-
+        //GET RANDOM INDEX FROM THE EMPTY INDEXES ARRAY
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
-        console.log(emptyIndexesArray);
         board[emptyIndexesArray[0][coordinate]] = 'X';
-
     };
 
 
 
-    //Winner
+    //GET WINNER
     function getWinner() {
+
         //horizontal top
-        if (board[0] == 'O' && board[1] == 'O' && board[2] == "O") {
+        if (gameBoard.board[0] == 'O' && gameBoard.board[1] == 'O' && gameBoard.board[2] == "O") {
             if (player1.mark == "O") {
                 console.log(player1.name + " is the winner! horizontal top");
             } else {
@@ -216,9 +224,11 @@ function gameFlow(player1, player2, board) {
     aiInput();
 
     console.log("");
-    printBoard();
+    // printBoard();
 
-    //getWinner();
+
+    console.log("");
+    getWinner();
 };
 
-gameFlow(player1, ai, board);
+gameFlow(player1, ai, gameBoard.getBoard());
