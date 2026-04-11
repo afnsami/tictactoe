@@ -17,9 +17,9 @@ const ai = new Player("A.I.", "X");
 let gameBoard = {
 
     board: [
-            'O', 'O', '',
-            '', '', 'O',
-            '', '', 'O',
+            '', '', '',
+            '', '', '',
+            '', '', '',
         ],
 
     getBoard() {
