@@ -28,7 +28,7 @@ let gameBoard = {
 };
 
 
-
+// PRINT CURRENT BOARD
 function printBoard() {
     console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
     console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
@@ -41,11 +41,6 @@ function printBoard() {
 
 //GAME FLOW
 function gameFlow(player1, player2, board) {
-
-
-    //Game Starts
-    console.log("------(Game starts)------");
-    console.log(board);
     
     //GET AI INPUT
     function aiInput() { 
@@ -67,8 +62,6 @@ function gameFlow(player1, player2, board) {
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
         board[emptyIndexesArray[0][coordinate]] = 'X';
     };
-
-
 
     //GET WINNER
     function getWinner() {
@@ -204,7 +197,6 @@ function gameFlow(player1, player2, board) {
         return true;
     };
 
-
     //RESET BOARD
     function resetBoard() {
         board = [
@@ -217,18 +209,8 @@ function gameFlow(player1, player2, board) {
         console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
         console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
-
-
-    aiInput();
-    aiInput();
-    aiInput();
-
-    console.log("");
-    // printBoard();
-
-
-    console.log("");
-    getWinner();
 };
+
+
 
 gameFlow(player1, ai, gameBoard.getBoard());
