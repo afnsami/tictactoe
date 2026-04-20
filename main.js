@@ -14,18 +14,16 @@ const ai = new Player("A.I.", "X");
 
 
 //Game Board Object
-let gameBoard = {
+const gameBoard = (() => {
 
-    board: [
+    board = [
             '', '', '',
             '', '', '',
             '', '', '',
-        ],
+        ]
 
-    getBoard() {
-        return this.board;
-    }
-};
+    return { board };
+})();
 
 
 // PRINT CURRENT BOARD
@@ -213,4 +211,4 @@ function gameFlow(player1, player2, board) {
 
 
 
-gameFlow(player1, ai, gameBoard.getBoard());
+gameFlow(player1, ai, gameBoard);
