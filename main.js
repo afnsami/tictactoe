@@ -4,6 +4,8 @@
 function Player(name, mark) {
     this.name = name;
     this.mark = mark;
+
+    return {name, mark}
 };
 
 const player1 = new Player("Clark", "O");
@@ -17,9 +19,9 @@ const ai = new Player("A.I.", "X");
 const gameBoard = (() => {
 
     board = [
-            '', '', '',
-            '', '', '',
-            '', '', '',
+            '❌', '', '',
+            '', '🟢', '',
+            '', '', '❌',
         ]
 
     return { board };
@@ -212,3 +214,30 @@ function gameFlow(player1, player2, board) {
 
 
 gameFlow(player1, ai, gameBoard);
+
+
+//-----------------------------------
+
+const renderBoard = (() => {
+
+    document.getElementById("box1").textContent = gameBoard.board[0];
+    document.getElementById("box2").textContent = gameBoard.board[1];
+    document.getElementById("box3").textContent = gameBoard.board[2];
+
+    document.getElementById("box4").textContent = gameBoard.board[3];
+    document.getElementById("box5").textContent = gameBoard.board[4];
+    document.getElementById("box6").textContent = gameBoard.board[5];
+
+    document.getElementById("box7").textContent = gameBoard.board[6];
+    document.getElementById("box8").textContent = gameBoard.board[7];
+    document.getElementById("box9").textContent = gameBoard.board[8];
+
+})();
+
+
+
+const displayController = (() => {
+
+
+
+})();
