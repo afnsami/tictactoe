@@ -1,6 +1,6 @@
 
 
-//Player Object Constructor
+//PLAYER OBJECT CONSTRUCTOR
 function Player(name, mark) {
     this.name = name;
     this.mark = mark;
@@ -15,14 +15,14 @@ const ai = new Player("A.I.", "X");
 //-----------------------------------
 
 
-//Game Board Object
+//GAME BOARD OBJECT
 const gameBoard = (() => {
 
     board = [
-            '❌', '', '',
-            '', '🟢', '',
-            '', '', '❌',
-        ]
+            '', '', '',
+            '', '', '',
+            '', '', '',
+        ];
 
     return { board };
 })();
@@ -60,7 +60,7 @@ function gameFlow(player1, player2, board) {
 
         //GET RANDOM INDEX FROM THE EMPTY INDEXES ARRAY
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
-        board[emptyIndexesArray[0][coordinate]] = 'X';
+        board[emptyIndexesArray[0][coordinate]] = '❌';
     };
 
     //GET WINNER
@@ -209,35 +209,122 @@ function gameFlow(player1, player2, board) {
         console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
         console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
+
+
+    aiInput();
+    aiInput();
+    
 };
 
 
 
-gameFlow(player1, ai, gameBoard);
+gameFlow(player1, ai, gameBoard.board);
 
 
 //-----------------------------------
 
-const renderBoard = (() => {
-
-    document.getElementById("box1").textContent = gameBoard.board[0];
-    document.getElementById("box2").textContent = gameBoard.board[1];
-    document.getElementById("box3").textContent = gameBoard.board[2];
-
-    document.getElementById("box4").textContent = gameBoard.board[3];
-    document.getElementById("box5").textContent = gameBoard.board[4];
-    document.getElementById("box6").textContent = gameBoard.board[5];
-
-    document.getElementById("box7").textContent = gameBoard.board[6];
-    document.getElementById("box8").textContent = gameBoard.board[7];
-    document.getElementById("box9").textContent = gameBoard.board[8];
-
-})();
-
-
+renderBoard();
 
 const displayController = (() => {
 
+    const box1 = document.getElementById("0");
+    const box2 = document.getElementById("1");
+    const box3 = document.getElementById("2");
+    const box4 = document.getElementById("3");
+    const box5 = document.getElementById("4");
+    const box6 = document.getElementById("5");
+    const box7 = document.getElementById("6");
+    const box8 = document.getElementById("7");
+    const box9 = document.getElementById("8");
+    
+
+    box1.addEventListener("click", (e) => {
+        gameBoard.board[0] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box2.addEventListener("click", (e) => {
+        gameBoard.board[1] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box3.addEventListener("click", (e) => {
+        gameBoard.board[2] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box4.addEventListener("click", (e) => {
+        gameBoard.board[3] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box5.addEventListener("click", (e) => {
+        gameBoard.board[4] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box6.addEventListener("click", (e) => {
+        gameBoard.board[5] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box7.addEventListener("click", (e) => {
+        gameBoard.board[6] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box8.addEventListener("click", (e) => {
+        gameBoard.board[7] = "🟢";
+        printBoard();
+        renderBoard();
+    });
+
+    box9.addEventListener("click", (e) => {
+        gameBoard.board[8] = "🟢";
+        printBoard();
+        renderBoard();
+    });
 
 
 })();
+
+
+
+// const renderBoard = (() => {
+
+//     document.getElementById("box1").textContent = gameBoard.board[0];
+//     document.getElementById("box2").textContent = gameBoard.board[1];
+//     document.getElementById("box3").textContent = gameBoard.board[2];
+
+//     document.getElementById("box4").textContent = gameBoard.board[3];
+//     document.getElementById("box5").textContent = gameBoard.board[4];
+//     document.getElementById("box6").textContent = gameBoard.board[5];
+
+//     document.getElementById("box7").textContent = gameBoard.board[6];
+//     document.getElementById("box8").textContent = gameBoard.board[7];
+//     document.getElementById("box9").textContent = gameBoard.board[8];
+
+// })();
+
+function renderBoard() {
+
+    document.getElementById("0").textContent = gameBoard.board[0];
+    document.getElementById("1").textContent = gameBoard.board[1];
+    document.getElementById("2").textContent = gameBoard.board[2];
+
+    document.getElementById("3").textContent = gameBoard.board[3];
+    document.getElementById("4").textContent = gameBoard.board[4];
+    document.getElementById("5").textContent = gameBoard.board[5];
+
+    document.getElementById("6").textContent = gameBoard.board[6];
+    document.getElementById("7").textContent = gameBoard.board[7];
+    document.getElementById("8").textContent = gameBoard.board[8];
+
+};
