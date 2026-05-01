@@ -237,61 +237,15 @@ const displayController = (() => {
     const box8 = document.getElementById("7");
     const box9 = document.getElementById("8");
     
+    const boxes = document.querySelectorAll(".box");
 
-    box1.addEventListener("click", (e) => {
-        gameBoard.board[0] = "🟢";
-        printBoard();
-        renderBoard();
+    boxes.forEach((box, index) => {
+        box.addEventListener("click", (e) => {
+            gameBoard.board[index] = "🟢";
+            console.log(index);
+            renderBoard();
+        });
     });
-
-    box2.addEventListener("click", (e) => {
-        gameBoard.board[1] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box3.addEventListener("click", (e) => {
-        gameBoard.board[2] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box4.addEventListener("click", (e) => {
-        gameBoard.board[3] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box5.addEventListener("click", (e) => {
-        gameBoard.board[4] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box6.addEventListener("click", (e) => {
-        gameBoard.board[5] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box7.addEventListener("click", (e) => {
-        gameBoard.board[6] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box8.addEventListener("click", (e) => {
-        gameBoard.board[7] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
-    box9.addEventListener("click", (e) => {
-        gameBoard.board[8] = "🟢";
-        printBoard();
-        renderBoard();
-    });
-
 
 })();
 
