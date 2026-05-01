@@ -226,16 +226,6 @@ gameFlow(player1, ai, gameBoard.board);
 renderBoard();
 
 const displayController = (() => {
-
-    const box1 = document.getElementById("0");
-    const box2 = document.getElementById("1");
-    const box3 = document.getElementById("2");
-    const box4 = document.getElementById("3");
-    const box5 = document.getElementById("4");
-    const box6 = document.getElementById("5");
-    const box7 = document.getElementById("6");
-    const box8 = document.getElementById("7");
-    const box9 = document.getElementById("8");
     
     const boxes = document.querySelectorAll(".box");
 
