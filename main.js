@@ -39,8 +39,7 @@ function printBoard() {
 //-----------------------------------
 
 
-//GAME FLOW
-function gameFlow(player1, player2, board) {
+const gameFlow = ((player1, player2, board) => {
     
     //GET AI INPUT
     function aiInput() { 
@@ -210,15 +209,12 @@ function gameFlow(player1, player2, board) {
         console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
 
-
-    aiInput();
-    aiInput();
+    return { aiInput }
     
-};
+})(player1, ai, gameBoard.board);
 
 
-
-gameFlow(player1, ai, gameBoard.board);
+// gameFlow(player1, ai, gameBoard.board);
 
 
 //-----------------------------------
@@ -230,13 +226,14 @@ const displayController = (() => {
     const boxes = document.querySelectorAll(".box");
 
     boxes.forEach((box, index) => {
+
         box.addEventListener("click", (e) => {
+
             gameBoard.board[index] = "🟢";
-            console.log(index);
+            gameFlow.aiInput();
             renderBoard();
         });
     });
-
 })();
 
 
