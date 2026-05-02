@@ -226,33 +226,30 @@ const displayController = (() => {
     const boxes = document.querySelectorAll(".box");
 
     boxes.forEach((box, index) => {
-
         box.addEventListener("click", (e) => {
 
-            gameBoard.board[index] = "🟢";
-            gameFlow.aiInput();
-            renderBoard();
+            if (gameBoard.board[index] == 0) {
+
+                gameBoard.board[index] = "🟢";
+                renderBoard();
+
+                //DELAY AFTER USER'S INPUT
+                setTimeout(() => {
+                    gameFlow.aiInput();
+                    renderBoard();
+                }, 500);
+            }
+
+            else {
+                console.log("not empty");
+            }
+
+
+
         });
     });
 })();
 
-
-
-// const renderBoard = (() => {
-
-//     document.getElementById("box1").textContent = gameBoard.board[0];
-//     document.getElementById("box2").textContent = gameBoard.board[1];
-//     document.getElementById("box3").textContent = gameBoard.board[2];
-
-//     document.getElementById("box4").textContent = gameBoard.board[3];
-//     document.getElementById("box5").textContent = gameBoard.board[4];
-//     document.getElementById("box6").textContent = gameBoard.board[5];
-
-//     document.getElementById("box7").textContent = gameBoard.board[6];
-//     document.getElementById("box8").textContent = gameBoard.board[7];
-//     document.getElementById("box9").textContent = gameBoard.board[8];
-
-// })();
 
 function renderBoard() {
 
