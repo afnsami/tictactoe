@@ -13,7 +13,7 @@
         <header>
             <div class="infoContainer">
                 <label for="nameInput" >Enter your name:</label>
-                <input class="nameInput" type="text" name="text" minlength="5" maxlength="10" required>
+                <input class="nameInput" id="nameInput" type="text" name="text" minlength="5" maxlength="10" required>
             </div>
 
             <div class="markContainer">
@@ -22,7 +22,9 @@
             </div>
         </header>
 
-        <p class="instruction">Click any box to start the game!</p>
+        <div class="gameState">
+            <p id="matchInfo">Click any box to start the game!</p>
+        </div>
 
         <div class="boardContainer">
             <div class="board">
