@@ -66,8 +66,8 @@ const gameFlow = ((player1, player2, board) => {
     function getWinner() {
 
         //horizontal top
-        if (gameBoard.board[0] == 'O' && gameBoard.board[1] == 'O' && gameBoard.board[2] == "O") {
-            if (player1.mark == "O") {
+        if (board[0] == 'O' && board[1] == 'O' && board[2] == "O") {
+            if (player1.mark === "O") {
                 console.log(player1.name + " is the winner! horizontal top");
             } else {
                 console.log(player2.name + " is the winner!")
@@ -209,7 +209,7 @@ const gameFlow = ((player1, player2, board) => {
         console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
 
-    return { aiInput }
+    return { aiInput, getWinner }
     
 })(player1, ai, gameBoard.board);
 
@@ -223,25 +223,38 @@ renderBoard();
 
 const displayController = (() => {
     
+    const nameInput = document.getElementById("nameInput");
+    const matchInfo = document.getElementById("matchInfo");
     const boxes = document.querySelectorAll(".box");
 
+    //BOX CLICK
     boxes.forEach((box, index) => {
         box.addEventListener("click", (e) => {
 
+
+            //IF NAME NOT FOUND
+            if (nameInput.textContent == "") {
+                nameInput.placeholder = "User";
+                matchInfo.innerHTML = `${nameInput.placeholder} vs <span style="color: red">A.I.</span>`;
+                matchInfo.style.fontSize = "30px";
+                matchInfo.style.fontWeight = "bold";
+
+            } else if (nameInput.textContent !== "") {
+                console.log("hihihih");
+            }
+
+            //IF BOX IS NOT EMPTY
             if (gameBoard.board[index] == 0) {
 
-                gameBoard.board[index] = "🟢";
+                gameBoard.board[index] = "O";
                 renderBoard();
 
                 //DELAY AFTER USER'S INPUT
                 setTimeout(() => {
                     gameFlow.aiInput();
                     renderBoard();
+                    gameFlow.getWinner();
                 }, 500);
-            }
-
-            else {
-                console.log("not empty");
             }
 
 
