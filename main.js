@@ -59,18 +59,20 @@ const gameFlow = ((player1, player2, board) => {
 
         //GET RANDOM INDEX FROM THE EMPTY INDEXES ARRAY
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
-        board[emptyIndexesArray[0][coordinate]] = '❌';
+        board[emptyIndexesArray[0][coordinate]] = 'X';
     };
 
     //GET WINNER
     function getWinner() {
 
+        const result = document.getElementById("result");
+
         //horizontal top
         if (board[0] == 'O' && board[1] == 'O' && board[2] == "O") {
             if (player1.mark === "O") {
-                console.log(player1.name + " is the winner! horizontal top");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`
             } else {
-                console.log(player2.name + " is the winner!")
+                console.log(player2.name + " is the winner!");
             }
         }
         else if (board[0] == 'X' && board[1] == 'X' && board[2] == "X") {
@@ -198,7 +200,9 @@ const gameFlow = ((player1, player2, board) => {
 
     //RESET BOARD
     function resetBoard() {
-        board = [
+        board[0] = '';
+
+        gameBoard.board = [
             '', '', '',
             '', '', '',
             '', '', '',
@@ -209,23 +213,55 @@ const gameFlow = ((player1, player2, board) => {
         console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
 
-    return { aiInput, getWinner }
+    return { aiInput, getWinner, resetBoard };
     
 })(player1, ai, gameBoard.board);
 
 
-// gameFlow(player1, ai, gameBoard.board);
-
 
 //-----------------------------------
+
+
 
 renderBoard();
 
 const displayController = (() => {
     
+    // VARIABLES
+    const mark = document.getElementById("mark");
     const nameInput = document.getElementById("nameInput");
     const matchInfo = document.getElementById("matchInfo");
     const boxes = document.querySelectorAll(".box");
+
+    let button = document.getElementById("button");
+    let isGameOngoing = false;
+
+
+
+    // START/RESTART BUTTON
+    button.addEventListener("click", () => {
+        if (isGameOngoing == false) {
+
+            isGameOngoing = true;
+            console.log(button.textContent)
+            button.textContent = "Restart";
+            matchInfo.textContent = "‎";
+
+            mark.textContent = player1.mark;
+
+        } else {
+            isGameOngoing = false;
+            mark.textContent = "";
+            button.textContent = "Start";
+            matchInfo.textContent = "Click to start the game!";
+            matchInfo.style.fontWeight = "normal";
+            gameFlow.resetBoard();
+            renderBoard();
+        }
+        console.log(isGameOngoing);
+    });
+
+
 
     //BOX CLICK
     boxes.forEach((box, index) => {
@@ -236,8 +272,6 @@ const displayController = (() => {
             if (nameInput.textContent == "") {
                 nameInput.placeholder = "User";
                 matchInfo.innerHTML = `${nameInput.placeholder} vs <span style="color: red">A.I.</span>`;
-                matchInfo.style.fontSize = "30px";
-                matchInfo.style.fontWeight = "bold";
 
             } else if (nameInput.textContent !== "") {
                 console.log("hihihih");
