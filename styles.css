@@ -75,10 +75,16 @@ header .markContainer {
     font-size: 30px;
 }
 
-#winner {
+#p1winner {
     text-decoration: underline;
     font-weight: bold;
     color: green;
+}
+
+#p2winner {
+    text-decoration: underline;
+    font-weight: bold;
+    color: red;
 }
 
 button {
