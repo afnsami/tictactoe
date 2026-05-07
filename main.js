@@ -1,6 +1,11 @@
 
 
-//PLAYER OBJECT CONSTRUCTOR
+// VARIABLES
+let isGameOngoing = false;
+let foundWinner = false;
+
+// PLAYER OBJECT CONSTRUCTOR
+
 function Player(name, mark) {
     this.name = name;
     this.mark = mark;
@@ -8,9 +13,9 @@ function Player(name, mark) {
     return {name, mark}
 };
 
-const player1 = new Player("Clark", "O");
+let player1 = new Player("Clark", "O");
 const ai = new Player("A.I.", "X");
-let isGameOngoing = false;
+
 
 //-----------------------------------
 
@@ -29,7 +34,6 @@ const gameBoard = (() => {
 
 
 //-----------------------------------
-let foundWinner = false;
 
 const gameFlow = ((player1, player2, gameBoard) => {
     
@@ -55,10 +59,12 @@ const gameFlow = ((player1, player2, gameBoard) => {
 
     //GET WINNER
     function getWinner() {
+
+        const nameInput = document.getElementById("nameInput").value;
         
         // HORIZONTAL
         if (gameBoard.board[0] == 'O' && gameBoard.board[1] == 'O' && gameBoard.board[2] == "O" || gameBoard.board[3] == "O" && gameBoard.board[4] == "O" && gameBoard.board[5] == "O" || gameBoard.board[6] == "O" && gameBoard.board[7] == "O" && gameBoard.board[8] == "O") {
-            result.innerHTML = `<span id="p1winner">${player1.name}</span> is the winner!`;
+            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
         }
         else if (gameBoard.board[0] == 'X' && gameBoard.board[1] == 'X' && gameBoard.board[2] == "X" || gameBoard.board[3] == "X" && gameBoard.board[4] == "X" && gameBoard.board[5] == "X" || gameBoard.board[6] == "X" && gameBoard.board[7] == "X" && gameBoard.board[8] == "X") {
             result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
@@ -66,7 +72,7 @@ const gameFlow = ((player1, player2, gameBoard) => {
 
         // VERTICAL
         else if (gameBoard.board[0] == "O" && gameBoard.board[3] == "O" && gameBoard.board[6] == "O" || gameBoard.board[1] == "O" && gameBoard.board[4] == "O" && gameBoard.board[7] == "O" || gameBoard.board[2] == "O" && gameBoard.board[5] == "O" && gameBoard.board[8] == "O") {
-            result.innerHTML = `<span id="p1winner">${player1.name}</span> is the winner!`;
+            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
         }
         else if (gameBoard.board[0] == "X" && gameBoard.board[3] == "X" && gameBoard.board[6] == "X" || gameBoard.board[1] == "X" && gameBoard.board[4] == "X" && gameBoard.board[7] == "X" || gameBoard.board[2] == "X" && gameBoard.board[5] == "X" && gameBoard.board[8] == "X") {
             result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
@@ -74,7 +80,7 @@ const gameFlow = ((player1, player2, gameBoard) => {
 
         //criss (\)
         else if (gameBoard.board[0] == 'O' && gameBoard.board[4] == 'O' && gameBoard.board[8] == 'O' || gameBoard.board[2] == "O" && gameBoard.board[4] == "O" && gameBoard.board[6] == "O") {
-            result.innerHTML = `<span id="p1winner">${player1.name}</span> is the winner!`;
+            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
         } 
         else if (gameBoard.board[0] == "X" && gameBoard.board[4] == "X" && gameBoard.board[8] == "X" || gameBoard.board[2] == "X" && gameBoard.board[4] == "X" && gameBoard.board[6] == "X") {
             result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
@@ -113,9 +119,7 @@ const gameFlow = ((player1, player2, gameBoard) => {
 })(player1, ai, gameBoard);
 
 
-
 //-----------------------------------
-
 
 
 const displayController = (() => {
@@ -136,12 +140,10 @@ const displayController = (() => {
         if (isGameOngoing == false) {
 
             isGameOngoing = true;
-            console.log("is game ongoing?: " + isGameOngoing);
-
             button.textContent = "Restart";
             nameInput.placeholder = "User";
             mark.textContent = player1.mark;
-            matchInfo.innerHTML = `${nameInput.placeholder} vs <span style="color: red">A.I.</span>`;
+            matchInfo.innerHTML = `${nameInput.value} vs <span style="color: red">A.I.</span>`;
 
             
             // CLICK ON INPUT BOX
@@ -188,12 +190,10 @@ const displayController = (() => {
             result.textContent = "";
             button.textContent = "Start";
             matchInfo.textContent = "Click to start the game!";
-            matchInfo.style.fontWeight = "normal";
 
             gameFlow.resetBoard();
             gameFlow.renderBoard();
         };
     });
-
 
 })();
