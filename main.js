@@ -10,7 +10,7 @@ function Player(name, mark) {
 
 const player1 = new Player("Clark", "O");
 const ai = new Player("A.I.", "X");
-
+let isGameOngoing = false;
 
 //-----------------------------------
 
@@ -28,30 +28,20 @@ const gameBoard = (() => {
 })();
 
 
-// PRINT CURRENT BOARD
-function printBoard() {
-    console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
-    console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
-    console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
-};
-
-
 //-----------------------------------
+let foundWinner = false;
 
-
-const gameFlow = ((player1, player2, board) => {
+const gameFlow = ((player1, player2, gameBoard) => {
     
     //GET AI INPUT
     function aiInput() { 
 
         let emptyIndexesArray = []; 
 
-        const emptyIndex = board.reduce((accumulator, current, index) => {
-            
+        const emptyIndex = gameBoard.board.reduce((accumulator, current, index) => {
             if (current === '') {
                 accumulator.push(index);
             }
-
             return accumulator;
         }, []);
 
@@ -59,53 +49,54 @@ const gameFlow = ((player1, player2, board) => {
 
         //GET RANDOM INDEX FROM THE EMPTY INDEXES ARRAY
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
-        board[emptyIndexesArray[0][coordinate]] = 'X';
+        gameBoard.board[emptyIndexesArray[0][coordinate]] = 'X';
+
     };
 
     //GET WINNER
     function getWinner() {
-
-        const result = document.getElementById("result");
-
+        
         //horizontal top
-        if (board[0] == 'O' && board[1] == 'O' && board[2] == "O") {
-            if (player1.mark === "O") {
-                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`
+        if (gameBoard.board[0] == 'O' && gameBoard.board[1] == 'O' && gameBoard.board[2] == "O") {
+
+            if (player1.mark == "O") {
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
-                console.log(player2.name + " is the winner!");
-            }
+                result.innerHTML = `<span id="winner">${player2.name}</span> is the winner!`;
+            };
+
         }
-        else if (board[0] == 'X' && board[1] == 'X' && board[2] == "X") {
-            if (player1.mark == "X") {
-                console.log(player1.name + " is the winner!");
+        else if (gameBoard.board[0] == 'X' && gameBoard.board[1] == 'X' && gameBoard.board[2] == "X") {
+            if (player2.mark == "X") {
+                result.innerHTML = `<span id="winner">${player2.name}</span> is the winner!`;
             } else {
-                console.log(player2.name + " is the winner!")
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             }
         }
         //horizontal middle
-        else if (board[3] == "O" && board[4] == "O" && board[5] == "O") {
+        else if (gameBoard.board[3] == "O" && gameBoard.board[4] == "O" && gameBoard.board[5] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
-                console.log(player2.name + " is the winner!")
+                result.innerHTML = `<span id="winner">${player2.name}</span> is the winner!`;
             }
         }
-        else if (board[3] == "X" && board[4] == "X" && board[5] == "X") {
+        else if (gameBoard.board[3] == "X" && gameBoard.board[4] == "X" && gameBoard.board[5] == "X") {
             if (player1.mark == "X") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player2.name}</span> is the winner!`;
             } else {
-                console.log(player2.name + " is the winner!")
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             }
         }
         //horizontal bottom
-        else if (board[6] == "O" && board[7] == "O" && board[8] == "O") {
+        else if (gameBoard.board[6] == "O" && gameBoard.board[7] == "O" && gameBoard.board[8] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[6] == "X" && board[7] == "X" && board[8] == "X") {
+        else if (gameBoard.board[6] == "X" && gameBoard.board[7] == "X" && gameBoard.board[8] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -115,14 +106,14 @@ const gameFlow = ((player1, player2, board) => {
 
 
         //vertical left
-        else if (board[0] == "O" && board[3] == "O" && board[6] == "O") {
+        else if (gameBoard.board[0] == "O" && gameBoard.board[3] == "O" && gameBoard.board[6] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[0] == "X" && board[3] == "X" && board[6] == "X") {
+        else if (gameBoard.board[0] == "X" && gameBoard.board[3] == "X" && gameBoard.board[6] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -130,14 +121,14 @@ const gameFlow = ((player1, player2, board) => {
             }
         }
         //vertical middle
-        else if (board[1] == "O" && board[4] == "O" && board[7] == "O") {
+        else if (gameBoard.board[1] == "O" && gameBoard.board[4] == "O" && gameBoard.board[7] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[1] == "X" && board[4] == "X" && board[7] == "X") {
+        else if (gameBoard.board[1] == "X" && gameBoard.board[4] == "X" && gameBoard.board[7] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -145,14 +136,14 @@ const gameFlow = ((player1, player2, board) => {
             }
         }
         //vertical right
-        else if (board[2] == "O" && board[5] == "O" && board[8] == "O") {
+        else if (gameBoard.board[2] == "O" && gameBoard.board[5] == "O" && gameBoard.board[8] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         }
-        else if (board[2] == "X" && board[5] == "X" && board[8] == "X") {
+        else if (gameBoard.board[2] == "X" && gameBoard.board[5] == "X" && gameBoard.board[8] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -161,14 +152,14 @@ const gameFlow = ((player1, player2, board) => {
         }
 
         //criss (\)
-        else if (board[0] == 'O' && board[4] == 'O' && board[8] == 'O') {
+        else if (gameBoard.board[0] == 'O' && gameBoard.board[4] == 'O' && gameBoard.board[8] == 'O') {
             if (player1.mark == 'O') {
-                console.log(player1.name + " is the winner! criss");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         } 
-        else if (board[0] == "X" && board[4] == "X" && board[8] == "X") {
+        else if (gameBoard.board[0] == "X" && gameBoard.board[4] == "X" && gameBoard.board[8] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -176,14 +167,14 @@ const gameFlow = ((player1, player2, board) => {
             }
         }
         // cross (/)
-        else if (board[2] == "O" && board[4] == "O" && board[6] == "O") {
+        else if (gameBoard.board[2] == "O" && gameBoard.board[4] == "O" && gameBoard.board[6] == "O") {
             if (player1.mark == "O") {
-                console.log(player1.name + " is the winner!");
+                result.innerHTML = `<span id="winner">${player1.name}</span> is the winner!`;
             } else {
                 console.log(player2.name + " is the winner!")
             }
         } 
-        else if (board[2] == "X" && board[4] == "X" && board[6] == "X") {
+        else if (gameBoard.board[2] == "X" && gameBoard.board[4] == "X" && gameBoard.board[6] == "X") {
             if (player1.mark == "X") {
                 console.log(player1.name + " is the winner!");
             } else {
@@ -194,28 +185,37 @@ const gameFlow = ((player1, player2, board) => {
         else {
             console.log("It's a draw!");
         };
-
-        return true;
     };
 
     //RESET BOARD
     function resetBoard() {
-        board[0] = '';
-
         gameBoard.board = [
             '', '', '',
             '', '', '',
             '', '', '',
         ];
-
-        console.log("[" + board[0] + "  " + board[1] + "  " + board[2] + "]");
-        console.log("[" + board[3] + "  " + board[4] + "  " + board[5] + "]");
-        console.log("[" + board[6] + "  " + board[7] + "  " + board[8] + "]");
     };
 
-    return { aiInput, getWinner, resetBoard };
+    function renderBoard() {
+        document.getElementById("0").textContent = gameBoard.board[0];
+        document.getElementById("1").textContent = gameBoard.board[1];
+        document.getElementById("2").textContent = gameBoard.board[2];
+
+        document.getElementById("3").textContent = gameBoard.board[3];
+        document.getElementById("4").textContent = gameBoard.board[4];
+        document.getElementById("5").textContent = gameBoard.board[5];
+
+        document.getElementById("6").textContent = gameBoard.board[6];
+        document.getElementById("7").textContent = gameBoard.board[7];
+        document.getElementById("8").textContent = gameBoard.board[8];
+    };
+
+
+    return { aiInput, getWinner, resetBoard, renderBoard };
     
-})(player1, ai, gameBoard.board);
+})(player1, ai, gameBoard);
+
+gameFlow.renderBoard();
 
 
 
@@ -223,93 +223,82 @@ const gameFlow = ((player1, player2, board) => {
 
 
 
-renderBoard();
-
 const displayController = (() => {
     
     // VARIABLES
     const mark = document.getElementById("mark");
     const nameInput = document.getElementById("nameInput");
     const matchInfo = document.getElementById("matchInfo");
+    const result = document.getElementById("result");
     const boxes = document.querySelectorAll(".box");
-
-    let button = document.getElementById("button");
-    let isGameOngoing = false;
-
+    let startButton = document.getElementById("button");
 
 
     // START/RESTART BUTTON
-    button.addEventListener("click", () => {
+    startButton.addEventListener("click", () => {
+
+        // WHEN GAME HAS STARTED
         if (isGameOngoing == false) {
 
             isGameOngoing = true;
-            console.log(button.textContent)
+            console.log("is game ongoing?: " + isGameOngoing);
+
             button.textContent = "Restart";
-            matchInfo.textContent = "‎";
-
+            nameInput.placeholder = "User";
             mark.textContent = player1.mark;
+            matchInfo.innerHTML = `${nameInput.placeholder} vs <span style="color: red">A.I.</span>`;
 
+            
+            // CLICK ON INPUT BOX
+            boxes.forEach((box, index) => {
+                box.addEventListener("click", (e) => {
+
+                    // IF BOX IS NOT EMPTY
+                    if (gameBoard.board[index] == 0) {
+
+                        // IF GAME IS ONGOING
+                        if (isGameOngoing == true) {     
+                            
+                            if (foundWinner == false) {
+                                gameBoard.board[index] = "O";
+                                gameFlow.renderBoard();
+                            };
+
+                            //DELAY AFTER USER'S INPUT
+                            setTimeout(() => {
+                                gameFlow.getWinner();
+
+                                if (foundWinner == false) {
+                                    gameFlow.aiInput();
+                                    gameFlow.renderBoard();
+                                }
+
+                                gameFlow.getWinner();
+                                gameFlow.renderBoard();
+
+                            }, 500);
+
+                        }
+                    };
+
+                });
+            });
+
+            
+        // WHEN THE GAME HAS NOT STARTED
         } else {
             isGameOngoing = false;
+            console.log(isGameOngoing);
             mark.textContent = "";
+            result.textContent = "";
             button.textContent = "Start";
             matchInfo.textContent = "Click to start the game!";
             matchInfo.style.fontWeight = "normal";
+
             gameFlow.resetBoard();
-            renderBoard();
-        }
-        console.log(isGameOngoing);
+            gameFlow.renderBoard();
+        };
     });
 
 
-
-    //BOX CLICK
-    boxes.forEach((box, index) => {
-        box.addEventListener("click", (e) => {
-
-
-            //IF NAME NOT FOUND
-            if (nameInput.textContent == "") {
-                nameInput.placeholder = "User";
-                matchInfo.innerHTML = `${nameInput.placeholder} vs <span style="color: red">A.I.</span>`;
-
-            } else if (nameInput.textContent !== "") {
-                console.log("hihihih");
-            }
-
-            //IF BOX IS NOT EMPTY
-            if (gameBoard.board[index] == 0) {
-
-                gameBoard.board[index] = "O";
-                renderBoard();
-
-                //DELAY AFTER USER'S INPUT
-                setTimeout(() => {
-                    gameFlow.aiInput();
-                    renderBoard();
-                    gameFlow.getWinner();
-                }, 500);
-            }
-
-
-
-        });
-    });
 })();
-
-
-function renderBoard() {
-
-    document.getElementById("0").textContent = gameBoard.board[0];
-    document.getElementById("1").textContent = gameBoard.board[1];
-    document.getElementById("2").textContent = gameBoard.board[2];
-
-    document.getElementById("3").textContent = gameBoard.board[3];
-    document.getElementById("4").textContent = gameBoard.board[4];
-    document.getElementById("5").textContent = gameBoard.board[5];
-
-    document.getElementById("6").textContent = gameBoard.board[6];
-    document.getElementById("7").textContent = gameBoard.board[7];
-    document.getElementById("8").textContent = gameBoard.board[8];
-
-};
