@@ -28,7 +28,6 @@ header {
     background-color: rgb(255, 255, 255);
 
     display: flex;
-    align-items: center;
     justify-content:space-between;
     gap: 10px;
 }
@@ -72,6 +71,7 @@ header .markContainer {
 
 #result {
     margin-top: 30px;
+    margin-bottom: 30px;
     font-size: 30px;
 }
 
@@ -96,7 +96,7 @@ button {
 
 
 .boardContainer {
-    height: 85%; /* HEADER TAKES 15% */
+    height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -151,6 +151,16 @@ button {
 
 
 @media (max-width: 700px) {
+
+    header {
+        display: flex;
+        justify-content:start;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        gap: 40px;
+    }
+
     .box {
         width: 100px;
         height: 100px;
