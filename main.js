@@ -5,7 +5,6 @@ let isGameOngoing = false;
 let foundWinner = false;
 
 // PLAYER OBJECT CONSTRUCTOR
-
 function Player(name, mark) {
     this.name = name;
     this.mark = mark;
@@ -13,11 +12,8 @@ function Player(name, mark) {
     return {name, mark}
 };
 
-let player1 = new Player("Clark", "O");
+let player1 = new Player("myName", "O");
 const ai = new Player("A.I.", "X");
-
-
-//-----------------------------------
 
 
 //GAME BOARD OBJECT
@@ -37,7 +33,6 @@ const gameBoard = (() => {
 
 const gameFlow = ((player1, player2, gameBoard) => {
     
-    //GET AI INPUT
     function aiInput() { 
 
         let emptyIndexesArray = []; 
@@ -54,10 +49,8 @@ const gameFlow = ((player1, player2, gameBoard) => {
         //GET RANDOM INDEX FROM THE EMPTY INDEXES ARRAY
         let coordinate = Math.floor(Math.random() * emptyIndexesArray[0].length);
         gameBoard.board[emptyIndexesArray[0][coordinate]] = 'X';
-
     };
 
-    //GET WINNER
     function getWinner() {
 
         const nameInput = document.getElementById("nameInput").value;
@@ -91,7 +84,6 @@ const gameFlow = ((player1, player2, gameBoard) => {
         };
     };
 
-    //RESET BOARD
     function resetBoard() {
         gameBoard.board = [
             '', '', '',
@@ -141,10 +133,13 @@ const displayController = (() => {
 
             isGameOngoing = true;
             button.textContent = "Restart";
-            nameInput.placeholder = "User";
             mark.textContent = player1.mark;
             matchInfo.innerHTML = `${nameInput.value} vs <span style="color: red">A.I.</span>`;
-
+            
+            if (nameInput.value == "") {
+                nameInput.value = "User";
+                matchInfo.innerHTML = `${nameInput.value} vs <span style="color: red">A.I.</span>`;
+            };
             
             // CLICK ON INPUT BOX
             boxes.forEach((box, index) => {
