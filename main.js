@@ -12,7 +12,7 @@ function Player(name, mark) {
     return {name, mark}
 };
 
-let player1 = new Player("myName", '🟢');
+const player1 = new Player("myName", '🟢');
 const ai = new Player("A.I.", '❌');
 
 
@@ -30,6 +30,7 @@ const gameBoard = (() => {
 
 
 //-----------------------------------
+
 
 const gameFlow = ((player1, player2, gameBoard) => {
     
