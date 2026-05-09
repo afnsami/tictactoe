@@ -54,36 +54,37 @@ const gameFlow = ((player1, player2, gameBoard) => {
 
     function getWinner() {
 
-        const nameInput = document.getElementById("nameInput").value;
+        const nameInput = document.getElementById("nameInput");
+        nameInput.style.color = "#009000";
 
         // HORIZONTAL
         if (gameBoard.board[0] == '🟢' && gameBoard.board[1] == '🟢' && gameBoard.board[2] == '🟢' || gameBoard.board[3] == '🟢' && gameBoard.board[4] == '🟢' && gameBoard.board[5] == '🟢' || gameBoard.board[6] == '🟢' && gameBoard.board[7] == '🟢' && gameBoard.board[8] == '🟢') {
             foundWinner = true;
-            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
+            result.innerText = `${nameInput.value} is the winner!`;
         }
         else if (gameBoard.board[0] == '❌' && gameBoard.board[1] == '❌' && gameBoard.board[2] == '❌' || gameBoard.board[3] == '❌' && gameBoard.board[4] == '❌' && gameBoard.board[5] == '❌' || gameBoard.board[6] == '❌' && gameBoard.board[7] == '❌' && gameBoard.board[8] == '❌') {
             foundWinner = true;
-            result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
+            result.innerText = `${player2.name} is the winner!`;
         }
 
         // VERTICAL
         else if (gameBoard.board[0] == '🟢' && gameBoard.board[3] == '🟢' && gameBoard.board[6] == '🟢' || gameBoard.board[1] == '🟢' && gameBoard.board[4] == '🟢' && gameBoard.board[7] == '🟢' || gameBoard.board[2] == '🟢' && gameBoard.board[5] == '🟢' && gameBoard.board[8] == '🟢') {
             foundWinner = true;
-            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
+            result.innerText = `${nameInput.value} is the winner!`;
         }
         else if (gameBoard.board[0] == '❌' && gameBoard.board[3] == '❌' && gameBoard.board[6] == '❌' || gameBoard.board[1] == '❌' && gameBoard.board[4] == '❌' && gameBoard.board[7] == '❌' || gameBoard.board[2] == '❌' && gameBoard.board[5] == '❌' && gameBoard.board[8] == '❌') {
             foundWinner = true;
-            result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
+            result.innerText = `${player2.name} is the winner!`;
         }
 
         //criss (\)
         else if (gameBoard.board[0] == '🟢' && gameBoard.board[4] == '🟢' && gameBoard.board[8] == '🟢' || gameBoard.board[2] == '🟢' && gameBoard.board[4] == '🟢' && gameBoard.board[6] == '🟢') {
             foundWinner = true;
-            result.innerHTML = `<span id="p1winner">${nameInput}</span> is the winner!`;
+            result.innerText = `${nameInput.value} is the winner!`;
         } 
         else if (gameBoard.board[0] == '❌' && gameBoard.board[4] == '❌' && gameBoard.board[8] == '❌' || gameBoard.board[2] == '❌' && gameBoard.board[4] == '❌' && gameBoard.board[6] == '❌') {
             foundWinner = true;
-            result.innerHTML = `<span id="p2winner">${player2.name}</span> is the winner!`;
+            result.innerText = `${player2.name} is the winner!`;
         }
     };
 
@@ -139,7 +140,7 @@ const displayController = (() => {
             isGameOngoing = true;
             button.textContent = "Restart";
             mark.textContent = player1.mark;
-            matchInfo.innerHTML = `${nameInput.value} vs <span style="color: red">A.I.</span>`;
+            matchInfo.innerHTML = `<span style="color: green;">${nameInput.value}</span> vs <span style="color: red">A.I.</span>`;
             
             if (nameInput.value == "") {
                 nameInput.value = "User";
